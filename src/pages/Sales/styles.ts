@@ -14,18 +14,19 @@ export const Title = styled.p`
 `;
 
 export const ContainerSalesMain = styled.div`
-  width: 85%;
+  width: 55%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0 10px;
+  border: 1px solid red;
+  margin-bottom: 10px;
 `;
 
 export const ButtonSales = styled.button`
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-around;
   width: 100%;
   background-color: transparent;
   border: none;
@@ -36,7 +37,11 @@ export const ImageSales = styled.img`
   height: 11rem;
 `;
 
-export const ContainerAbout = styled.div``
+export const ContainerAbout = styled.div`
+  width: 45%;
+  text-align: center;
+  border: 1px solid red;
+`
 
 export const About = styled.p`
   text-align: start;
