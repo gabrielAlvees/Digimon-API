@@ -6,11 +6,7 @@ import imageSale05 from '../../../assets/1150.jpg';
 import imageSale06 from '../../../assets/1151.jpg';
 
 export const DataSales = [
-  {
-    imageSale: imageSale01,
-    date: '2023/02/03',
-    about: 'Digimon Card Game Rising Wind [RB-01] Released on Friday, January 27! Grab victory with the rebooted card!'
-  },
+
   {
     imageSale: imageSale02,
     date: '2023/04/12',

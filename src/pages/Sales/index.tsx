@@ -6,7 +6,6 @@ import { ISales } from "../../types/Sales";
 import {
   SectionAbout,
   Title,
-  ContainerSalesMain,
   ButtonSales,
   ImageSales,
   ContainerAbout,
@@ -19,15 +18,13 @@ export const Sales = () => {
     <SectionAbout>
       <Title>Latest updates</Title>
       {DataSales.map((sales: ISales) => (
-        <ContainerSalesMain>
-          <ButtonSales>
-            <ImageSales src={`${sales.imageSale}`} />
-            <ContainerAbout>
-              <Date>{sales.date}</Date>
-              <About>{sales.about}</About>
-            </ContainerAbout>
-          </ButtonSales>
-        </ContainerSalesMain>
+        <ButtonSales>
+          <ImageSales src={`${sales.imageSale}`} />
+          <ContainerAbout>
+            <Date>{sales.date}</Date>
+            <About>{sales.about}</About>
+          </ContainerAbout>
+        </ButtonSales>
       ))}
     </SectionAbout>
   );

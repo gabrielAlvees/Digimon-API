@@ -13,42 +13,36 @@ export const Title = styled.p`
   padding: 40px 0;
 `;
 
-export const ContainerSalesMain = styled.div`
-  width: 55%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  border: 1px solid red;
-  margin-bottom: 10px;
-`;
-
 export const ButtonSales = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  background-color: transparent;
+  width: 85%;
+  margin: 10px auto;
+  padding: 0 10px;
   border: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: transparent;
 `;
 
 export const ImageSales = styled.img`
-  width: 16.80rem;
-  height: 11rem;
+  width: 16.563rem;
+  height: 9.375rem;
 `;
 
 export const ContainerAbout = styled.div`
-  width: 45%;
-  text-align: center;
-  border: 1px solid red;
+  width: 75%;
 `
 
 export const About = styled.p`
   text-align: start;
-  padding: 5px 10px;
+  padding: 0 10px;
+  font-weight: bolder;
+  font-size: 1.3rem;
+  color: #333;
 `;
 
 export const Date = styled.p`
+  font-size: 0.9rem;
   text-align: start;
-  padding: 5px 10px;
+  padding: 0px 10px;
 `;
