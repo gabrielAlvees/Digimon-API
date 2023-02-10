@@ -1,6 +1,6 @@
 // Importando Componentes
 import { Navbar } from "../../components/Navbar";
-import { Sales } from "../Sales";
+import { Sales } from "../../components/Sales";
 
 // Importando Imagens
 import gifImage from "../../assets/header_bg.jpg";
