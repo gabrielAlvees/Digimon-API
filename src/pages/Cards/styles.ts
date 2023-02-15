@@ -18,6 +18,8 @@ export const Title = styled.h1`
 
 export const InputNameDigimon = styled.input``;
 
+export const ButtonSearch = styled.button``;
+
 export const ContainerCards = styled.div`
   border: 4px solid blue;
   width: 70%;

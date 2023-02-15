@@ -1,5 +1,6 @@
 // React
 import { useEffect, useState } from "react";
+import Select from "react-select";
 
 // Importando componentes
 import { ICards } from "../../types/Cards";
@@ -14,6 +15,7 @@ import {
   ContainerFilter,
   Title,
   InputNameDigimon,
+  ButtonSearch,
   ContainerCards,
   ContainerImg,
   LoadMoreButton,
@@ -27,7 +29,7 @@ export const Cards = () => {
     try {
       const response = await axios.get(
         `https://digimoncard.io/api-public/search.php?`,
-        { params: { n: nameDigimon || "" } }
+        { params: { n: nameDigimon, color: select, type: type } }
       );
       setListCards(response.data);
     } catch (error: any) {
@@ -48,6 +50,12 @@ export const Cards = () => {
   // Filter Name
   const [nameDigimon, setNameDigimon] = useState("");
 
+  // Filter Name
+  const [select, setselect] = useState("");
+
+  // Filter Name
+  const [type, settype] = useState("");
+
   return (
     <Main>
       <FlexContainer>
@@ -58,7 +66,18 @@ export const Cards = () => {
             value={nameDigimon}
             onChange={(e) => setNameDigimon(e.target.value)}
           />
-          <button onClick={() => getCards()}>A</button>
+          <select value={select} onChange={(e) => setselect(e.target.value)}>
+            <option value="red">Valor 1</option>
+            <option value="black">Valor 3</option>
+          </select>
+
+          <select value={type} onChange={(e) => settype(e.target.value)}>
+            <option value="digimon">Valor 1</option>
+            <option value="Option">Valor 3</option>
+            <option value="Tamer">Valor 3</option>
+            <option value="Digi-Egg">Valor 3</option>
+          </select>
+          <ButtonSearch onClick={() => getCards()}>Search</ButtonSearch>
         </ContainerFilter>
         <ContainerCards>
           {listCards.slice(0, cardsToShow).map((cards: ICards) => (
