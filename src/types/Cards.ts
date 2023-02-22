@@ -3,4 +3,5 @@ export interface ICards {
   cardnumber: string;
   image_url: FileList;
   desc: string;
+  color: string;
 }
