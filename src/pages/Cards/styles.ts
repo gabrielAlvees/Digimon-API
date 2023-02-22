@@ -72,7 +72,11 @@ export const ContainerImg = styled.div`
 `;
 
 
-export const LoadMoreButton = styled.button``;
+export const LoadMoreButton = styled.button`
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+`;
 
 export const CardsImage = styled.img`
   width: 15rem;

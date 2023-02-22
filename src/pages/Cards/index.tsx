@@ -144,9 +144,12 @@ export const Cards = () => {
           ))}
         </ContainerCards>
       </FlexContainer>
-
       {listCards.length > cardsToShow && (
-        <LoadMoreButton onClick={handleLoadMore}>Carregar mais</LoadMoreButton>
+        <ContainerButton>
+          <LoadMoreButton onClick={handleLoadMore}>
+            Carregar mais
+          </LoadMoreButton>
+        </ContainerButton>
       )}
     </Main>
   );
