@@ -1,6 +1,5 @@
 // React
 import { useEffect, useState } from "react";
-import Select from "react-select";
 
 // Importando componentes
 import { ICards } from "../../types/Cards";
@@ -14,13 +13,19 @@ import {
   FlexContainer,
   ContainerFilter,
   Title,
+  InputsContainer,
   InputNameDigimon,
+  Label,
+  Select,
+  Option,
   ButtonSearch,
+  ContainerButton,
   ContainerCards,
   ContainerImg,
   LoadMoreButton,
   CardsImage,
 } from "./styles";
+import { toast } from "react-toastify";
 
 export const Cards = () => {
   const [listCards, setListCards] = useState<ICards[]>([]);
@@ -28,12 +33,23 @@ export const Cards = () => {
   const getCards = async () => {
     try {
       const response = await axios.get(
-        `https://digimoncard.io/api-public/search.php?`,
-        { params: { n: nameDigimon, color: select, type: type } }
+        `https://digimoncard.io/api-public/search.php?sort=name`,
+        {
+          params: {
+            n: nameDigimon ? nameDigimon : undefined,
+            color: colorCard ? colorCard : undefined,
+            type: typeCard ? typeCard : undefined,
+            sort: sortCard ? sortCard : undefined,
+          },
+        }
       );
       setListCards(response.data);
+
+      if (nameDigimon || colorCard || typeCard || sortCard) {
+        toast.success("Filtro aplicado com sucesso!");
+      }
     } catch (error: any) {
-      console.log(`${error}`);
+      toast.error("Cartas não encontrada!");
     }
   };
 
@@ -50,40 +66,80 @@ export const Cards = () => {
   // Filter Name
   const [nameDigimon, setNameDigimon] = useState("");
 
-  // Filter Name
-  const [select, setselect] = useState("");
+  // Filter Color cards
+  const [colorCard, setColorCard] = useState("");
 
-  // Filter Name
-  const [type, settype] = useState("");
+  // Filter Type
+  const [typeCard, setTypeCard] = useState("");
+
+  // Filter Sort
+  const [sortCard, setSortCard] = useState("");
 
   return (
     <Main>
       <FlexContainer>
         <ContainerFilter>
           <Title>Filters</Title>
-          <InputNameDigimon
-            type="text"
-            value={nameDigimon}
-            onChange={(e) => setNameDigimon(e.target.value)}
-          />
-          <select value={select} onChange={(e) => setselect(e.target.value)}>
-            <option value="red">Valor 1</option>
-            <option value="black">Valor 3</option>
-          </select>
+          <InputsContainer>
+            <Label>Digimon</Label>
+            <InputNameDigimon
+              type="text"
+              value={nameDigimon}
+              onChange={(e) => setNameDigimon(e.target.value)}
+            />
 
-          <select value={type} onChange={(e) => settype(e.target.value)}>
-            <option value="digimon">Valor 1</option>
-            <option value="Option">Valor 3</option>
-            <option value="Tamer">Valor 3</option>
-            <option value="Digi-Egg">Valor 3</option>
-          </select>
-          <ButtonSearch onClick={() => getCards()}>Search</ButtonSearch>
+            <Label>Cor</Label>
+            <Select
+              value={colorCard}
+              onChange={(e) => setColorCard(e.target.value)}
+            >
+              <Option value="">Selecione uma cor</Option>
+              <Option value="black">Preto</Option>
+              <Option value="blue">Azul</Option>
+              <Option value="colorless">Incolor</Option>
+              <Option value="green">Verde</Option>
+              <Option value="purple">Roxo</Option>
+              <Option value="red">Vermelho</Option>
+              <Option value="white">Branco</Option>
+              <Option value="yellow">Amarelo</Option>
+            </Select>
+
+            <Label>Tipo</Label>
+            <Select
+              value={typeCard}
+              onChange={(e) => setTypeCard(e.target.value)}
+            >
+              <Option value="">Selecione um tipo</Option>
+              <Option value="digimon">Digimon</Option>
+              <Option value="option">Option</Option>
+              <Option value="tamer">Tamer</Option>
+              <Option value="digi-egg">Digi-Egg</Option>
+            </Select>
+
+            <Label>Aleátorio</Label>
+            <Select
+              value={sortCard}
+              onChange={(e) => setSortCard(e.target.value)}
+            >
+              <Option value="">Selecione uma opção</Option>
+              <Option value="name">Name</Option>
+              <Option value="power">Power</Option>
+              <Option value="code">Code</Option>
+              <Option value="color">Color</Option>
+            </Select>
+          </InputsContainer>
+
+          <ContainerButton>
+            <ButtonSearch onClick={() => getCards()}>
+              Aplicar filtros
+            </ButtonSearch>
+          </ContainerButton>
         </ContainerFilter>
+
         <ContainerCards>
           {listCards.slice(0, cardsToShow).map((cards: ICards) => (
             <ContainerImg>
               <CardsImage src={`${cards.image_url}`} />
-              <div>a</div>
             </ContainerImg>
           ))}
         </ContainerCards>
